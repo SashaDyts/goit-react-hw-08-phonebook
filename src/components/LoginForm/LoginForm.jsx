@@ -1,34 +1,23 @@
 import React from 'react';
-import { FormStyled, Label, Input, Button } from './RegisterForm.styled';
+import { FormStyled, Label, Input, Button } from './LoginForm.styled';
 import { initialState } from './initial-state';
 // import useForm from 'hooks/useForm';
 import useNewForm from 'hooks/useNewForm';
 
-function RegisterForm({ onSubmit }) {
+function LoginForm({ onSubmit }) {
   const { state, handleChange, handleSubmit } = useNewForm({
     initialState,
     onSubmit,
   });
 
-  const { name, email, password } = state;
+  const { password, email } = state;
 
   return (
     <FormStyled onSubmit={handleSubmit}>
       <Label>
-        Name
-        <Input
-          type="text"
-          name="name"
-          onChange={handleChange}
-          value={name}
-          required
-          autoComplete="off"
-        />
-      </Label>
-      <Label>
         Email
         <Input
-          type="email"
+          type="text"
           name="email"
           onChange={handleChange}
           value={email}
@@ -36,6 +25,7 @@ function RegisterForm({ onSubmit }) {
           autoComplete="off"
         />
       </Label>
+
       <Label>
         Password
         <Input
@@ -48,9 +38,9 @@ function RegisterForm({ onSubmit }) {
         />
       </Label>
 
-      <Button type="submit">Registration</Button>
+      <Button type="submit">Login</Button>
     </FormStyled>
   );
 }
 
-export default RegisterForm;
+export default LoginForm;
