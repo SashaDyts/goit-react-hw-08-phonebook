@@ -5,7 +5,7 @@ import { setFilter } from 'redux/filter/filter-slice';
 import { getFilter } from 'redux/filter/filter-selectors';
 import { getFilteredContacts } from 'redux/contacts/constacts-selectors';
 
-import { Input, Button } from './Filter.styled';
+import { Input } from './Filter.styled';
 
 const Filter = () => {
   const dispatch = useDispatch();
