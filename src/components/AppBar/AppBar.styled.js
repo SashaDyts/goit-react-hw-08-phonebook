@@ -9,5 +9,7 @@ export const Container = styled.header`
   /* width: 100%;
   height: 50px; */
 
-  background-color: gray;
+  background-color: #f700ff;
+  /* background: linear-gradient(to top right #f700ff, #0004ff); */
 `;
+// c51bd6

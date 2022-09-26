@@ -5,6 +5,8 @@ import { setFilter } from 'redux/filter/filter-slice';
 import { getFilter } from 'redux/filter/filter-selectors';
 import { getFilteredContacts } from 'redux/contacts/constacts-selectors';
 
+import { Input, Button } from './Filter.styled';
+
 const Filter = () => {
   const dispatch = useDispatch();
   const filter = useSelector(getFilter);
@@ -17,7 +19,7 @@ const Filter = () => {
   return (
     <label>
       <p>Find contacts by name</p>
-      <input
+      <Input
         value={filter}
         type="text"
         onChange={e => {

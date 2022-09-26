@@ -5,7 +5,9 @@ const initialState = {
   user: { name: null, email: null },
   token: null,
   isLoggedIn: false,
-  isFetchingCurrentUser: false,
+  isLoading: false,
+  error: null,
+  isFetching: false,
 };
 
 const authSlice = createSlice({
@@ -13,35 +15,82 @@ const authSlice = createSlice({
 
   initialState,
 
+  reducers: {
+    removeError: state => {
+      state.error = null;
+    },
+  },
+
   extraReducers: {
+    [register.pending]: state => {
+      state.isLoading = true;
+      state.error = null;
+    },
     [register.fulfilled]: (state, { payload }) => {
       state.user = payload.user;
       state.token = payload.token;
       state.isLoggedIn = true;
+      state.isLoading = false;
+    },
+    [register.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
+
+    [login.pending]: (state, { payload }) => {
+      state.isLoading = true;
+      state.isLoggedIn = false;
+      state.error = null;
     },
     [login.fulfilled]: (state, { payload }) => {
-      console.log(payload);
       state.user = payload.user;
       state.token = payload.token;
       state.isLoggedIn = true;
+      state.isLoading = false;
+      state.error = null;
     },
+    [login.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      state.isLoggedIn = false;
+      state.error = payload;
+    },
+
     [logout.fulfilled]: state => {
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
+      state.isLoading = false;
     },
     [fetchCurrentUser.pending]: state => {
-      state.isFetchingCurrentUser = true;
+      state.isFetching = true;
     },
     [fetchCurrentUser.fulfilled]: (state, { payload }) => {
       state.user = payload;
       state.isLoggedIn = true;
-      state.isFetchingCurrentUser = false;
+      state.isFetching = false;
     },
     [fetchCurrentUser.rejected]: state => {
-      state.isFetchingCurrentUser = false;
+      state.isFetching = false;
     },
+    // [fetchCurrentUser.pending]: state => {
+    //   state.error = null;
+    //   state.isLoading = true;
+    //   state.isFetching = true;
+    // },
+    // [fetchCurrentUser.fulfilled]: (state, { payload }) => {
+    //   state.user = payload;
+    //   state.isLoggedIn = true;
+    //   state.isLoading = false;
+    //   state.isFetching = false;
+    // },
+    // [fetchCurrentUser.rejected]: state => {
+    //   state.isLoading = false;
+    //   state.token = null;
+    //   state.isFetching = false;
+    // },
   },
 });
+
+export const { removeError } = authSlice.actions;
 
 export default authSlice.reducer;

@@ -9,7 +9,10 @@ export const NavContainer = styled.nav`
 
 export const NavItem = styled(NavLink)`
   text-decoration: none;
-  color: black;
+  color: #0004ff;
+
+  font-size: 18px;
+  font-weight: bold;
 
   padding-top: 20px;
   padding-bottom: 20px;
@@ -19,11 +22,11 @@ export const NavItem = styled(NavLink)`
   }
 
   &.active {
-    color: blue;
+    color: white;
   }
 
   :hover:not(.active),
   :focus-visible:not(.active) {
-    color: orange;
+    color: #5500ff;
   }
 `;

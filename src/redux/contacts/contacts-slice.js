@@ -22,7 +22,7 @@ const contactsSlice = createSlice({
       state.error = null;
     },
     [fetchContacts.fulfilled]: (state, { payload }) => {
-      state.loading = true;
+      state.loading = false;
       state.items = payload;
     },
     [fetchContacts.rejected]: (state, { payload }) => {

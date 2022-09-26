@@ -1,4 +1,5 @@
 import React from 'react';
+import { FiDelete } from 'react-icons/fi';
 
 import {
   ContactList,
@@ -20,6 +21,7 @@ const ContactsList = ({ contacts, deleteContact }) => {
               }}
             >
               Delete
+              <FiDelete size={20} />
             </DeleteContactBtn>
           </ContactListItem>
         );
